@@ -1,5 +1,7 @@
 # 🎯 Resumind - AI Resume Analyzer
 
+**Credits JavaScript Mastery for the tutorial**
+
 **Smart feedback for your dream job!**
 
 Resumind is an intelligent resume analysis platform that provides AI-powered feedback to help you optimize your resume for specific job applications. Upload your resume, provide job details, and get comprehensive ATS scores and improvement suggestions.
