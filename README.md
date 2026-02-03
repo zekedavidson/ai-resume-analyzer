@@ -1,62 +1,141 @@
-# Welcome to React Router!
+# 🎯 Resumind - AI Resume Analyzer
 
-A modern, production-ready template for building full-stack React applications using React Router.
+**Smart feedback for your dream job!**
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+Resumind is an intelligent resume analysis platform that provides AI-powered feedback to help you optimize your resume for specific job applications. Upload your resume, provide job details, and get comprehensive ATS scores and improvement suggestions.
 
-## Features
+![React Router](https://img.shields.io/badge/React_Router-7.7.1-CA4245?style=flat&logo=react-router&logoColor=white)
+![React](https://img.shields.io/badge/React-19.1.0-61DAFB?style=flat&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?style=flat&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.1.4-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## ✨ Features
 
-## Getting Started
+- 🤖 **AI-Powered Analysis** - Leverages Claude Sonnet 4 for intelligent resume evaluation
+- 📊 **ATS Score** - Get your Applicant Tracking System compatibility score
+- 💡 **Detailed Feedback** - Receive actionable tips on:
+  - Content quality and relevance
+  - Tone and style
+  - Structure and formatting
+  - Skills presentation
+- 📁 **Resume Management** - Track multiple resume submissions and their feedback
+- 🔐 **Secure Authentication** - Built-in user authentication via Puter.js
+- 📱 **Responsive Design** - Beautiful UI that works on all devices
+- 🎨 **Modern UI/UX** - Clean, intuitive interface with smooth animations
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v20 or higher recommended)
+- npm or pnpm
 
 ### Installation
 
-Install the dependencies:
+1. Clone the repository:
+```bash
+git clone https://github.com/zekedavidson/ai-resume-analyzer.git
+cd ai-resume-analyzer
+```
 
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
-
+3. Start the development server:
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Your application will be available at `http://localhost:5173`
 
-## Building for Production
+## 📖 How to Use
 
-Create a production build:
+1. **Sign In** - Authenticate using Puter.js authentication
+2. **Upload Resume** - Navigate to the upload page
+3. **Provide Job Details** - Enter:
+   - Company name
+   - Job title
+   - Job description
+4. **Upload PDF** - Drag and drop or select your resume PDF
+5. **Get Feedback** - AI analyzes your resume and provides:
+   - Overall score
+   - ATS compatibility score
+   - Detailed feedback on multiple aspects
+   - Specific improvement suggestions
+6. **Review & Improve** - View your resume alongside AI feedback
+7. **Track Progress** - Access all your analyzed resumes from the homepage
 
-```bash
-npm run build
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 19.1.0** - UI library
+- **React Router 7.7.1** - Routing and SSR
+- **TypeScript** - Type safety
+- **TailwindCSS 4.1.4** - Styling
+- **Zustand** - State management
+
+### Backend & Services
+- **Puter.js** - Authentication, file storage, and AI services
+- **Claude Sonnet 4** - AI model for resume analysis
+- **PDF.js** - PDF processing and image conversion
+
+### Key Libraries
+- `react-dropzone` - File upload interface
+- `pdfjs-dist` - PDF to image conversion
+- `clsx` & `tailwind-merge` - Utility class management
+
+## 📁 Project Structure
+
+```
+ai-resume-analyzer/
+├── app/
+│   ├── components/       # React components
+│   │   ├── Navbar.tsx
+│   │   ├── FileUploader.tsx
+│   │   ├── ResumeCard.tsx
+│   │   ├── Summary.tsx
+│   │   ├── ATS.tsx
+│   │   └── Details.tsx
+│   ├── lib/             # Utility functions
+│   │   ├── puter.ts     # Puter.js integration
+│   │   ├── pdf2img.ts   # PDF conversion
+│   │   └── utils.ts
+│   ├── routes/          # Application routes
+│   │   ├── home.tsx     # Dashboard
+│   │   ├── upload.tsx   # Upload page
+│   │   ├── resume.tsx   # Resume review page
+│   │   └── auth.tsx     # Authentication
+│   └── app.css          # Global styles
+├── constants/
+│   └── index.ts         # AI prompts and configurations
+├── public/
+│   ├── images/          # Static images
+│   └── icons/           # Icon assets
+└── types/               # TypeScript type definitions
 ```
 
-## Deployment
+## 🔧 Available Scripts
 
-### Docker Deployment
+- `npm run dev` - Start development server with HMR
+- `npm run build` - Create production build
+- `npm run start` - Start production server
+- `npm run typecheck` - Run TypeScript type checking
 
-To build and run using Docker:
+## 🐳 Docker Deployment
+
+Build and run using Docker:
 
 ```bash
-docker build -t my-app .
+# Build the image
+docker build -t resumind .
 
 # Run the container
-docker run -p 3000:3000 my-app
+docker run -p 3000:3000 resumind
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
-
+The containerized application can be deployed to:
 - AWS ECS
 - Google Cloud Run
 - Azure Container Apps
@@ -64,24 +143,68 @@ The containerized application can be deployed to any platform that supports Dock
 - Fly.io
 - Railway
 
-### DIY Deployment
+## 🎨 Features in Detail
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+### AI Analysis Categories
 
-Make sure to deploy the output of `npm run build`
+1. **ATS Compatibility**
+   - Keyword optimization
+   - Format compatibility
+   - Parsing friendliness
 
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
+2. **Content Quality**
+   - Relevance to job description
+   - Achievement quantification
+   - Impact demonstration
 
-## Styling
+3. **Tone & Style**
+   - Professional language
+   - Active voice usage
+   - Clarity and conciseness
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+4. **Structure**
+   - Section organization
+   - Visual hierarchy
+   - Readability
+
+5. **Skills Presentation**
+   - Relevant skills highlighting
+   - Technical proficiency demonstration
+   - Skill-job alignment
+
+## 🔐 Authentication & Storage
+
+This application uses **Puter.js** for:
+- User authentication
+- File storage (resume PDFs and images)
+- Key-value storage for resume metadata
+- AI chat services
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🙏 Acknowledgments
+
+- Built with [React Router](https://reactrouter.com/)
+- Powered by [Puter.js](https://puter.com/)
+- AI analysis by Claude Sonnet 4
+- UI components styled with [TailwindCSS](https://tailwindcss.com/)
+
+## 📧 Contact
+
+For questions or feedback, please open an issue on GitHub.
 
 ---
 
-Built with ❤️ using React Router.
+Built with ❤️ to help job seekers land their dream jobs.
