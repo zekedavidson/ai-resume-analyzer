@@ -123,7 +123,47 @@ ai-resume-analyzer/
 - `npm run start` - Start production server
 - `npm run typecheck` - Run TypeScript type checking
 
-## 🐳 Docker Deployment
+## 🚀 Deployment
+
+### Render.com (Recommended)
+
+#### Option 1: Static Site Deployment (Easiest)
+
+This app is configured as an SPA (`ssr: false`), making it perfect for static hosting:
+
+1. **Create a Static Site** on Render.com
+2. **Configure:**
+   ```
+   Build Command: npm install && npm run build
+   Publish Directory: build/client
+   ```
+3. **Add Rewrite Rule** (Critical for routing):
+   - Source: `/*`
+   - Destination: `/index.html`
+   - Action: `Rewrite`
+
+4. **Deploy!** Your app will be live at `https://your-app.onrender.com`
+
+#### Option 2: Web Service with SSR
+
+For server-side rendering (better SEO):
+
+1. **Update `react-router.config.ts`:**
+   ```typescript
+   export default {
+     ssr: true,  // Change from false
+   } satisfies Config;
+   ```
+
+2. **Create a Web Service** on Render.com:
+   ```
+   Build Command: npm install && npm run build
+   Start Command: npm run start
+   ```
+
+> 📖 **Detailed deployment guide:** See [RENDER_FIX.md](./RENDER_FIX.md) for troubleshooting
+
+### Docker Deployment
 
 Build and run using Docker:
 
@@ -134,6 +174,8 @@ docker build -t resumind .
 # Run the container
 docker run -p 3000:3000 resumind
 ```
+
+**Note:** Enable SSR mode (`ssr: true`) before using Docker deployment.
 
 The containerized application can be deployed to:
 - AWS ECS

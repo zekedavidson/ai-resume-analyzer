@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ai-resume-analyzer
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    # For SPA mode, we need to serve static files
+    staticPublishPath: ./build/client
+    # Add custom headers and routing rules
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
